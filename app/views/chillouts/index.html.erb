@@ -1,0 +1,25 @@
+<h1>チルアウト一覧</h1>
+<% if @chillouts.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>タイトル</th>
+        <th>メッセージ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @chillouts.each do |chillout| %>
+        <tr>
+          <td><%= link_to chillout.id, chillout %></td>
+          <td><%= chillout.title %></td>
+          <td><%= chillout.content %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= paginate @chillouts %>
+  </div>
+<% end %>
+<%= link_to '新規メッセージの投稿', new_chillout_path, class: "btn btn-primary" %>
