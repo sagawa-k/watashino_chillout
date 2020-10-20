@@ -6,6 +6,7 @@
         <th>id</th>
         <th>タイトル</th>
         <th>メッセージ</th>
+        <th>カテゴリー</th>
       </tr>
     </thead>
     <tbody>
@@ -14,6 +15,7 @@
           <td><%= link_to chillout.id, chillout %></td>
           <td><%= chillout.title %></td>
           <td><%= chillout.content %></td>
+          <td><%= chillout.category %></td>
         </tr>
       <% end %>
     </tbody>

@@ -13,6 +13,10 @@
     <th>メッセージ</th>
     <td><%= @chillout.content %></td>
   </tr>
+  <tr>
+    <th>カテゴリー</th>
+    <td><%= @chillout.category %></td>
+  </tr>
 </table>
 
 <%= link_to '編集する', edit_chillout_path(@chillout), class: 'btn btn-light' %>

@@ -52,6 +52,6 @@ class ChilloutsController < ApplicationController
   end
 
   def chillout_params
-    params.require(:chillout).permit(:title, :content)
+    params.require(:chillout).permit(:title, :content, :category).merge(category: params[:category].to_i)
   end
 end
