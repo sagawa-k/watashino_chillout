@@ -1,5 +1,7 @@
 class ChilloutsController < ApplicationController
+  before_action :require_user_logged_in, only: [:create, :show, :edit, :update, :destroy]
   before_action :set_chill, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:destroy]
 
   def index
     @chillouts = Chillout.order(id: :desc).page(params[:page]).per(3)
@@ -14,8 +16,7 @@ class ChilloutsController < ApplicationController
   end
 
   def create
-    binding.pry
-    @chillout = Chillout.new(chillout_params)
+    @chillout = current_user.chillout.build(chillout_params)
     if @chillout.save
       flash[:success] = '正常に投稿されました'
       redirect_to @chillout
@@ -52,7 +53,14 @@ class ChilloutsController < ApplicationController
     @chillout = Chillout.find(params[:id])
   end
 
+  def correct_user
+    @chillout = current_user.chillouts.find_by(id: params[:id])
+    unless @chillout
+      redirect_to root_url
+    end
+  end
+
   def chillout_params
-    params.require(:chillout).permit(:title, :content, :category).merge(category: params[:category].to_i)
+    params.require(:chillout).permit(:title, :content, :category).merge(category: params[:chillout][:category].to_i)
   end
 end
