@@ -14,6 +14,7 @@ class ChilloutsController < ApplicationController
   end
 
   def create
+    binding.pry
     @chillout = Chillout.new(chillout_params)
     if @chillout.save
       flash[:success] = '正常に投稿されました'
