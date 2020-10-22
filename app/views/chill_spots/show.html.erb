@@ -1,0 +1,25 @@
+<h1>id: <%= @chill_spot.id %> のメッセージ詳細ページ</h1>
+
+<table class="table table-bordered">
+  <tr>
+    <th>id</th>
+    <td><%= @chill_spot.id %></td>
+  </tr>
+  <tr>
+    <th>SPOT</th>
+    <td><%= @chill_spot.name %></td>
+  </tr>
+  <tr>
+    <th>PLACE</th>
+    <td><%= @chill_spot.prefecture&.name %></td>
+  </tr>
+</table>
+<% if @chill_spot.spot_image? %>
+  <p>
+    <strong>IMAGE:</strong>
+    <%= image_tag @chill_spot.spot_image.url %>
+  </p>
+<% end %>
+
+<%= link_to '編集する', edit_chill_spot_path(@chill_spot), class: 'btn btn-light' %>
+<%= link_to '削除する', @chill_spot, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger' %>

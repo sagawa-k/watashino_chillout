@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ChilloutTest < ActiveSupport::TestCase
+class ChillSpotTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
