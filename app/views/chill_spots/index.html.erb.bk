@@ -1,0 +1,23 @@
+<h1>チルアウト一覧</h1>
+<% if @chill_spots.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>SPOT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @chill_spots.each do |chill_spot| %>
+        <tr>
+          <td><%= link_to chill_spot.id, chill_spot %></td>
+          <td><%= chill_spot.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= paginate @chill_spots %>
+  </div>
+<% end %>
+<%= link_to '新規メッセージの投稿', new_chill_spot_path, class: "btn btn-primary" %>

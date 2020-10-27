@@ -4,8 +4,7 @@ class ChillSpotsController < ApplicationController
   # before_action :correct_user, only: [:create, :edit, :update, :destroy]
 
   def index
-    @chill_spots = ChillSpot.order(id: :desc).page(params[:page]).per(3)
-
+    @chill_spots = ChillSpot.order(id: :desc).page(params[:page]).per(25)
   end
 
   def show

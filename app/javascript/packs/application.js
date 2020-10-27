@@ -6,6 +6,9 @@ import "packs/application.css";
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("channels")
+require("jquery")
+require("bootstrap")
+require("./scripts.js")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
