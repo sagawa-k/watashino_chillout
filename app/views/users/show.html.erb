@@ -1,16 +1,79 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark", style="background-color: #000000">
+    <%= link_to 'MY CHILL OUT', root_path, class: 'navbar-brand' %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav text-uppercase ml-auto">
+        <li class="nav-item"><%= link_to 'ABOUT', root_path(anchor: 'services'), class: 'nav-link js-scroll-trigger' %></li>
+        <li class="nav-item"><%= link_to 'CHILL SPOT', root_path(anchor: 'portfolio'), class: 'nav-link js-scroll-trigger' %></li>
+        <li class="nav-item"><%= link_to 'CHILLOUT BIBLE', root_path(anchor: 'about'), class: 'nav-link js-scroll-trigger' %></li>
+        <li class="nav-item"><%= link_to 'CONTACT', root_path(anchor: 'contact'), class: 'nav-link js-scroll-trigger' %></li>
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <a href="#Modal" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li class="dropdown-item"><%= link_to 'My profile', user_path(current_user) %></li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li class="nav-item"><%= link_to 'Signup', signup_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link' %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>
 <div class="row">
   <aside class="col-sm-4">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title"><%= @user.name %></h3>
+        <%= image_tag @user.user_image.url, :class=>"img-fluid"%>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <%= form_with(model: @user, local: true) do |f| %>
+          <div class="form-group">
+            <%= f.label :user_image, 'user_image' %>
+            <%= f.file_field :user_image %>
+          </div>
+          <%= f.submit '登録', class: 'btn btn-secondary btn-lg'%>
+        <% end %>
       </div>
     </div>
   </aside>
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="#" class="nav-link">SPOT</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">BOOKS</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">MUSIC</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">MY CHILL SPOT</a></li>
     </ul>
+
+    <section class="page-section" id="portfolio">
+        <div class="container">
+            <div class="row">
+              <% if @chill_spots.any? %>
+                <% @chill_spots.each do |chill_spot| %>
+                  <div class="col-lg-4 col-sm-6 mb-4 hoge" style="padding: 0 2px">
+                    <%= link_to chill_spot do %>
+                      <div class="portfolio-item">
+                        <%= image_tag chill_spot.spot_image.url, :class=>"img-fluid"%>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading"><%= chill_spot.name %></div>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+            <div>
+          </div>
+        </div>
+    </section>
+
   </div>
 </div>

@@ -1,0 +1,28 @@
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <%= link_to 'MY CHILL OUT', root_path, class: 'navbar-brand' %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav text-uppercase ml-auto">
+        <li class="nav-item"><%= link_to 'ABOUT', root_path(anchor: 'services'), class: 'nav-link js-scroll-trigger' %></li>
+        <li class="nav-item"><%= link_to 'CHILL SPOT', root_path(anchor: 'portfolio'), class: 'nav-link js-scroll-trigger' %></li>
+        <li class="nav-item"><%= link_to 'CHILLOUT BIBLE', root_path(anchor: 'about'), class: 'nav-link js-scroll-trigger' %></li>
+        <li class="nav-item"><%= link_to 'CONTACT', root_path(anchor: 'contact'), class: 'nav-link js-scroll-trigger' %></li>
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <a href="#Modal" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li class="dropdown-item"><%= link_to 'My profile', user_path(current_user) %></li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li class="nav-item"><%= link_to 'Signup', signup_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link' %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>

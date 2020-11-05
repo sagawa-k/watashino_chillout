@@ -1,10 +1,10 @@
 class ChillSpotsController < ApplicationController
-  # before_action :require_user_logged_in, only: [:create, :edit, :update, :destroy]
+  before_action :require_user_logged_in, except: :index
   before_action :set_chill_spot, only: [:show, :edit, :update, :destroy]
   # before_action :correct_user, only: [:create, :edit, :update, :destroy]
 
   def index
-    @chill_spots = ChillSpot.order(id: :desc).page(params[:page]).per(25)
+    @chill_spots = ChillSpot.order(id: :desc).page(params[:page]).per(6)
   end
 
   def show
